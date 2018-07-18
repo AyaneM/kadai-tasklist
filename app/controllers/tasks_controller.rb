@@ -3,12 +3,12 @@ class TasksController < ApplicationController
  before_action :correct_user, only: [:destroy]
 
   def create
-    @task = current_user.tasks.build(micropost_params)
+     @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success] = 'タスクを投稿しました。'
       redirect_to root_url
     else
-      @tasks = current_user.tasks.order('created_at DESC').page(params[:page])
+      @tasks = current_user.feed_tasks.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'タスクの投稿に失敗しました。'
       render 'toppages/index'
     end
@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    flash[:success] = 'メッセージを削除しました。'
+    flash[:success] = 'タスクを削除しました。'
     redirect_back(fallback_location: root_path)
   end
 
