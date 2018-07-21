@@ -10,7 +10,9 @@
 <%= form_for(@task) do |f| %>
 
         <div class="form-group">
-          
+<p>ステータス</p>
+<%= f.text_area :status, class: 'form-control', rows: 5 %>          
+<p>タスク</p>
 <%= f.text_area :content, class: 'form-control', rows: 5 %>
 
         </div>
