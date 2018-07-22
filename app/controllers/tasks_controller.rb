@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
  before_action :require_user_logged_in
- before_action :correct_user, only: [:destroy]
+ before_action :correct_user, only: [:destroy, :show, :update, :edit]
   
   def new
     @task = Task.new
@@ -19,7 +19,6 @@ class TasksController < ApplicationController
   end
   
   def show
-    correct_user
   end
   
   def create
